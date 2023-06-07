@@ -12,7 +12,14 @@
 
 
 NAME = libftprintf.a
-SRCS = ft_printf.c
+SRCS = ft_printf.c \
+	ft_putchar_fd_count.c \
+	ft_putnbr_base_fd_count.c \
+	ft_putnbr_fd_count.c \
+	ft_putstr_fd_count.c \
+	ft_putui_fd_count.c \
+	ft_strlen.c
+
 OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
 OBJDIR = ./obj/
 CC = cc
