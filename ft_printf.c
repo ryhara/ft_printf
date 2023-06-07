@@ -54,7 +54,7 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	while (*str)
 	{
-		if (*str == '%')
+		if (*str == '%' && *(str + 1) != '\0')
 		{
 			count = check_specifier(str, args, count);
 			str += 2;
@@ -82,6 +82,7 @@ int	ft_printf(const char *s, ...)
 // 	unsigned int ui = UINT_MAX;
 // 	count1 = printf("st:%i %s %% %u %x %p\n",d, s, ui, d1, s);
 // 	printf("count1 : %d\n", count1);
+
 // 	count2 = ft_printf("ft:%i %s %% %u %x %p\n", d, s, ui, d1, s);
 // 	ft_printf("count2 : %d\n", count2);
 // }
