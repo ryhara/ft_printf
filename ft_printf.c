@@ -12,35 +12,34 @@
 
 #include "ft_printf.h"
 
-
-static size_t check_specifier(char *str, va_list args, size_t count)
+static	size_t	check_specifier(char *str, va_list args, size_t count)
 {
+	char	*base;
+
 	str++;
-	if (*str == 'd')
-		count = ft_putnbr_fd_count(va_arg(args, int), 1, count);
-	else if (*str == 'i')
-		count = ft_putnbr_fd_count(va_arg(args, int), 1, count);
+	if (*str == 'd' || *str == 'i')
+		count = ft_putnbr_count(va_arg(args, int), count);
 	else if (*str == 'c')
-		count = ft_putchar_fd_count(va_arg(args, int), 1, count);
+		count = ft_putchar_count(va_arg(args, int), count);
 	else if (*str == 's')
-		count = ft_putstr_fd_count(va_arg(args, char*), 1, count);
+		count = ft_putstr_count(va_arg(args, char *), count);
 	else if (*str == 'u')
-		count = ft_putui_fd_count(va_arg(args, unsigned int), 1, count);
+		count = ft_putui_count(va_arg(args, unsigned int), count);
 	else if (*str == 'x')
-		count = ft_putnbr_base_fd_count(va_arg(args, int), "0123456789abcdef", 1, count);
+		count = ft_putnbr_base(va_arg(args, int), "0123456789abcdef", count);
 	else if (*str == 'X')
-		count = ft_putnbr_base_fd_count(va_arg(args, int), "0123456789ABCDEF", 1, count);
+		count = ft_putnbr_base(va_arg(args, int), "0123456789ABCDEF", count);
 	else if (*str == 'p')
 	{
-		count = ft_putstr_fd_count("0x", 1, count);
-		count = ft_putnbr_base_fd_count(va_arg(args, unsigned long long), "0123456789abcdef", 1, count);
+		count = ft_putstr_count("0x", count);
+		base = "0123456789abcdef";
+		count = ft_putnbr_base(va_arg(args, unsigned long), base, count);
 	}
 	else if (*str == '%')
-		count = ft_putchar_fd_count('%', 1, count);
+		count = ft_putchar_count('%', count);
 	str++;
 	return (count);
 }
-
 
 int	ft_printf(const char *s, ...)
 {
@@ -62,7 +61,7 @@ int	ft_printf(const char *s, ...)
 		}
 		else
 		{
-			count = ft_putchar_fd_count(*str, 1, count);
+			count = ft_putchar_count(*str, count);
 			str++;
 		}
 	}
@@ -70,21 +69,19 @@ int	ft_printf(const char *s, ...)
 	return ((int)count);
 }
 
-#include <stdio.h>
-int main(void)
-{
-	int count1 = 0;
-	int count2 = 0;
-	int d = 42;
-	int d1 = 42;
-	int d2 = 42;
-	char c = 'f';
-	char *s="42TOKYO";
-	unsigned int ui = UINT_MAX;
-
-	count1 = printf("st: %d %i %c %s %% %u %x %X %p 42tokyo\n", d, d, c, s, ui, d1, d2, s);
-	printf("count1 : %d\n", count1);
-	count2 = ft_printf("ft: %d %i %c %s %% %u %x %X %p 42tokyo\n", d, d,  c, s, ui, d1, d2, s);
-	ft_printf("count2 : %d\n", count2);
-
-}
+// #include <stdio.h>
+// int main(void)
+// {
+// 	int count1 = 0;
+// 	int count2 = 0;
+// 	int d = 42;
+// 	int d1 = 42;
+// 	int d2 = 42;
+// 	char c = 'f';
+// 	char *s="42TOKYO";
+// 	unsigned int ui = UINT_MAX;
+// 	count1 = printf("st:%i %s %% %u %x %p\n",d, s, ui, d1, s);
+// 	printf("count1 : %d\n", count1);
+// 	count2 = ft_printf("ft:%i %s %% %u %x %p\n", d, s, ui, d1, s);
+// 	ft_printf("count2 : %d\n", count2);
+// }

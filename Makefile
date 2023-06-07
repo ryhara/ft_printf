@@ -13,11 +13,11 @@
 
 NAME = libftprintf.a
 SRCS = ft_printf.c \
-	ft_putchar_fd_count.c \
-	ft_putnbr_base_fd_count.c \
-	ft_putnbr_fd_count.c \
-	ft_putstr_fd_count.c \
-	ft_putui_fd_count.c \
+	ft_putchar_count.c \
+	ft_putnbr_base_count.c \
+	ft_putnbr_count.c \
+	ft_putstr_count.c \
+	ft_putui_count.c \
 	ft_strlen.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
@@ -46,4 +46,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
