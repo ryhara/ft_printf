@@ -33,7 +33,7 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 	{
 		count = ft_putstr_count("0x", count);
 		base = "0123456789abcdef";
-		count = ft_putnbr_base(va_arg(args, unsigned long), base, count);
+		count = ft_putnbr_base(va_arg(args, unsigned long long), base, count);
 	}
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
