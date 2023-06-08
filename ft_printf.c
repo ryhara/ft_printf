@@ -16,7 +16,6 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 {
 	char	*base;
 
-	str++;
 	if (*str == 'd' || *str == 'i')
 		count = ft_putnbr_count(va_arg(args, int), count);
 	else if (*str == 'c')
@@ -37,7 +36,8 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 	}
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
-	str++;
+	else
+		return (-1);
 	return (count);
 }
 
@@ -54,16 +54,15 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	while (*str)
 	{
-		if (*str == '%' && *(str + 1) != '\0')
+		if (*str == '%')
 		{
-			count = check_specifier(str, args, count);
-			str += 2;
-		}
-		else
-		{
-			count = ft_putchar_count(*str, count);
+			count = check_specifier(++str, args, count);
+			if (count == -1)
+				return (-1);
 			str++;
 		}
+		else
+			count = ft_putchar_count(*str++, count);
 	}
 	va_end(args);
 	return ((int)count);
