@@ -37,7 +37,7 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
 	else
-		return (-1);
+		return (0);
 	return (count);
 }
 
@@ -57,7 +57,7 @@ int	ft_printf(const char *s, ...)
 		if (*str == '%')
 		{
 			count = check_specifier(++str, args, count);
-			if (count == -1)
+			if (count == 0)
 				return (-1);
 			str++;
 		}
