@@ -14,8 +14,11 @@
 
 static	size_t	check_specifier(char *str, va_list args, size_t count)
 {
-	char	*base;
+	char	*base_low;
+	char	*base_up;
 
+	base_low = "0123456789abcdef";
+	base_up = "0123456789ABCDEF";
 	if (*str == 'd' || *str == 'i')
 		count = ft_putnbr_count(va_arg(args, int), count);
 	else if (*str == 'c')
@@ -25,14 +28,13 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 	else if (*str == 'u')
 		count = ft_putui_count(va_arg(args, unsigned int), count);
 	else if (*str == 'x')
-		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef", count);
+		count = ft_putnbr_base(va_arg(args, unsigned int), base_low, count);
 	else if (*str == 'X')
-		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", count);
+		count = ft_putnbr_base(va_arg(args, unsigned int), base_up, count);
 	else if (*str == 'p')
 	{
 		count = ft_putstr_count("0x", count);
-		base = "0123456789abcdef";
-		count = ft_putnbr_base(va_arg(args, unsigned long), base, count);
+		count = ft_putnbr_base(va_arg(args, unsigned long), base_low, count);
 	}
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
