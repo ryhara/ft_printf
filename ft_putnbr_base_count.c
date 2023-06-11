@@ -12,19 +12,17 @@
 
 #include "ft_printf.h"
 
-size_t	ft_putnbr_base(unsigned int n, char *base, size_t count)
+size_t	ft_putnbr_base(unsigned long n, char *base, size_t count)
 {
-	unsigned int	len;
+	size_t	len;
 
-	len = (int)ft_strlen(base);
+	len = ft_strlen(base);
 	if (n >= len)
 	{
 		count = ft_putnbr_base((n / len), base, count);
 		n %= len;
 	}
 	if (n < len)
-	{
 		count = ft_putchar_count(base[n], count);
-	}
 	return (count);
 }

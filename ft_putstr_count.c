@@ -14,6 +14,11 @@
 
 size_t	ft_putstr_count(char *s, size_t count)
 {
+	if  (s == NULL)
+	{
+		count = ft_putstr_count("(null)", count);
+		return (count);
+	}
 	while (*s)
 	{
 		write(1, s, 1);

@@ -25,7 +25,7 @@ size_t	ft_putnbr_count(int n, size_t count);
 size_t	ft_putchar_count(char c, size_t count);
 size_t	ft_putstr_count(char *s, size_t count);
 size_t	ft_putui_count(unsigned int num, size_t count);
-size_t	ft_putnbr_base(unsigned int n, char *base, size_t count);
+size_t	ft_putnbr_base(unsigned long n, char *base, size_t count);
 size_t	ft_strlen(const char *s);
 
 #endif

@@ -25,19 +25,17 @@ static	size_t	check_specifier(char *str, va_list args, size_t count)
 	else if (*str == 'u')
 		count = ft_putui_count(va_arg(args, unsigned int), count);
 	else if (*str == 'x')
-		count = ft_putnbr_base(va_arg(args, int), "0123456789abcdef", count);
+		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef", count);
 	else if (*str == 'X')
-		count = ft_putnbr_base(va_arg(args, int), "0123456789ABCDEF", count);
+		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", count);
 	else if (*str == 'p')
 	{
 		count = ft_putstr_count("0x", count);
 		base = "0123456789abcdef";
-		count = ft_putnbr_base(va_arg(args, unsigned long long), base, count);
+		count = ft_putnbr_base(va_arg(args, unsigned long), base, count);
 	}
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
-	else
-		return (0);
 	return (count);
 }
 
@@ -57,8 +55,6 @@ int	ft_printf(const char *s, ...)
 		if (*str == '%')
 		{
 			count = check_specifier(++str, args, count);
-			if (count == 0)
-				return (-1);
 			str++;
 		}
 		else
