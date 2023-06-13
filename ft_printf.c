@@ -57,6 +57,8 @@ int	ft_printf(const char *s, ...)
 		if (*str == '%')
 		{
 			count = check_specifier(++str, args, count);
+			if (*str == '\0')
+				return (-1);
 			str++;
 		}
 		else
