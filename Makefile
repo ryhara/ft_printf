@@ -18,6 +18,7 @@ SRCS = ft_printf.c \
 	ft_putnbr_count.c \
 	ft_putstr_count.c \
 	ft_putui_count.c \
+	ft_putaddress.c \
 	ft_strlen.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
