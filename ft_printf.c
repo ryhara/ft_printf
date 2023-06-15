@@ -68,24 +68,3 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int count1 = 0;
-// 	int count2 = 0;
-// 	int d = 42;
-// 	int d1 = -10;
-// 	int d2 = 42;
-// 	char c = 'f';
-// 	char *s="42TOKYO";
-// 	unsigned int ui = UINT_MAX;
-// 	count1 = printf("st:%i %s %% %u %x %p\n",INT_MIN, s, ui, d1, s);
-// 	// count1 = printf("%s%c", "", '\0');
-// 	printf("count1 : %d\n", count1);
-
-// 	count2 = ft_printf("ft:%i %s %% %u %x %p\n", INT_MIN, s, ui, d1, s);
-// 	// count2 = ft_printf("%s %c %z %", "a",'z');
-// 	// count2 = ft_printf("%s%c", "", '\0');
-// 	ft_printf("count2 : %d\n", count2);
-// }
