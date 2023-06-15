@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_putaddress(unsigned long n, char *base, size_t count)
+int	ft_putaddress(unsigned long n, char *base, int count)
 {
 	count = ft_putstr_count("0x", count);
 	count = ft_putnbr_base(n, base, count);

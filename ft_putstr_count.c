@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_putstr_count(char *s, size_t count)
+int	ft_putstr_count(char *s, int count)
 {
 	if (s == NULL)
 	{

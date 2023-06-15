@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_putui_count(unsigned int n, size_t count)
+int	ft_putui_count(unsigned int n, int count)
 {
 	if (n >= 10)
 		count = ft_putui_count(n / 10, count);

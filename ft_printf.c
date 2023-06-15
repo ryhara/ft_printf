@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static	size_t	check_print(char *str, va_list args, size_t count)
+static	int	check_print(char *str, va_list args, int count)
 {
 	char	*base_low;
 	char	*base_up;
@@ -36,23 +36,14 @@ static	size_t	check_print(char *str, va_list args, size_t count)
 	else if (*str == '%')
 		count = ft_putchar_count('%', count);
 	else
-		return (0);
+		return (-1);
 	return (count);
-}
-
-static int	check_specifier(char *str, size_t count)
-{
-	if (*str == '\0')
-		return (1);
-	if (count == 0 && *str != 'c' && *str != 's')
-		return (1);
-	return (0);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
-	size_t	count;
+	int		count;
 	char	*str;
 
 	count = 0;
@@ -65,17 +56,17 @@ int	ft_printf(const char *s, ...)
 		if (*str == '%')
 		{
 			count = check_print(++str, args, count);
-			if (check_specifier(str, count))
+			if (count < 0)
 				return (-1);
 			str++;
 		}
 		else
 			count = ft_putchar_count(*str++, count);
-		if (count > INT_MAX)
+		if (count < 0)
 			return (-1);
 	}
 	va_end(args);
-	return ((int)count);
+	return (count);
 }
 
 // #include <stdio.h>

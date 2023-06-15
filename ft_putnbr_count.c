@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_putnbr_count(int n, size_t count)
+int	ft_putnbr_count(int n, int count)
 {
 	if (n < 0)
 	{
